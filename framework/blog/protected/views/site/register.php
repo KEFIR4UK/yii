@@ -23,11 +23,12 @@ $this->breadcrumbs=array(
 
 <div class="form">
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'Register',
-	'enableClientValidation'=>true,
-	'enableAjaxValidation' =>true,
+	'id'=>'register-form',
+	//'enableClientValidation'=>true,
+         'enableAjaxValidation'=>true,
 	'clientOptions'=>array(
-		'validateOnSubmit'=>true,
+		'validateOnSubmit' => true,
+            'validateOnChange' => true
 	),
 ));
 

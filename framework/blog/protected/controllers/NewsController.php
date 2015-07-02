@@ -65,7 +65,7 @@ class NewsController extends Controller
 		$model=new News;
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		 $this->performAjaxValidation($model);
 
 		if(isset($_POST['News']))
 		{

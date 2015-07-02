@@ -82,20 +82,25 @@ class SiteController extends Controller
 	public function actionLogin()
 	{
 		$model=new LoginForm;
-
-
+       
+                if(Yii::app()->getRequest()->getIsAjaxRequest()) 
+                {
+                    echo CActiveForm::validate($model); 
+                    Yii::app()->end(); 
+                }
+                
 		// collect user input data
 		if(isset($_POST['LoginForm']))
 		{
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
-			if($model->validate())
-				$this->redirect(Yii::app()->user->returnUrl);
+                        $model->validate();       
 		}
 		// display the login form
-		$this->render('login',array('model'=>$model));;
+		
 
 	}
+    
 
 	/**
 	 * Logs out the current user and redirect to homepage.
@@ -105,25 +110,27 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+     
 
-	public function actionRegister()
+        public function actionRegister()
 	{
 		$model = new RegistrationForm;
-
+                if(isset($_POST['ajax']) && $_POST['ajax']==='register-form')
+                {
+                            echo CActiveForm::validate($model);
+                            Yii::app()->end();
+                }
 		if(isset($_POST['RegistrationForm']))
 		{
-			$model->attributes = $_POST['RegistrationForm'];
+			$model->attributes =$_POST['RegistrationForm'];
 			if($model->validate())
 			{
 			    $user = new User;
 			    $user->attributes = $model->attributes;
-
-				if($user->save())
-				{
-					Yii::app()->user->setFlash('success', "Register success!");
-				}
+                            if($user->save())
+                            echo 1;
+                               
 			}
-		}
-		$this->render('index',array('model'=>$model));
+		}  
 	}
 }

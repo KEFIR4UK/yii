@@ -25,7 +25,7 @@ class RegistrationForm extends CFormModel
 			// email has to be a valid email address
 			array('email', 'email'),
 			array('email', 'uniqueEmail','message'=>'Email already exists!'),
-			array('password', 'compare', 'compareAttribute'=>'repeat_password'),
+			array('repeat_password', 'compare', 'compareAttribute'=>'password'),
 			// verifyCode needs to be entered correctly
 			array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements())
 		);

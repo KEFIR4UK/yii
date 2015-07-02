@@ -21,16 +21,12 @@ class LoginForm extends CFormModel
 		return array(
 			// name, email, subject and body are required
 			array('password,email', 'required'),
-			array('password', 'authenticate'),
+			array('email', 'authenticate'),
 
 		);
 	}
 	public function authenticate($attribute,$params)
 	{
-
-		if(!$this->hasErrors())
-		{
-
 			$identity= new UserIdentity($this->email, $this->password);
 
 			$identity->authenticate();
@@ -55,7 +51,7 @@ class LoginForm extends CFormModel
 					break;
 				}
 			}
-		}
+		
 	}
 
 

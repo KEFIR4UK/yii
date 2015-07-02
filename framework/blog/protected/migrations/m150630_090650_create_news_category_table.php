@@ -4,7 +4,7 @@ class m150630_090650_create_news_category_table extends CDbMigration
 {
 	public function up()
 	{
-      / $this->createTable('news_category',array(
+      $this->createTable('news_category',array(
 		'id' 	   => 'pk',
 		'ordering' => 'int NOT NULL',
 		'title'	   => 'varchar(255)'
